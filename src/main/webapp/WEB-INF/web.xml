@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>addUserRecord</servlet-name>
+        <servlet-class>com.addUsersServlet.addUserRecord</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>getAllUsers</servlet-name>
+        <servlet-class>com.addUsersServlet.getAllUsers</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updateUserDetails</servlet-name>
+        <servlet-class>com.addUsersServlet.updateUserDetails</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>deleteUsers</servlet-name>
+        <servlet-class>com.addUsersServlet.deleteUsers</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addUserRecord</servlet-name>
+        <url-pattern>/addUserRecord</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getAllUsers</servlet-name>
+        <url-pattern>/getAllUsers</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateUserDetails</servlet-name>
+        <url-pattern>/updateUserDetails</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteUsers</servlet-name>
+        <url-pattern>/deleteUsers</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>
