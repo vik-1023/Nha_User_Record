@@ -16,6 +16,22 @@
         <servlet-name>deleteUsers</servlet-name>
         <servlet-class>com.addUsersServlet.deleteUsers</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddAccountDetails</servlet-name>
+        <servlet-class>com.addAccountDetails.AddAccountDetails</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>getAllAccounts</servlet-name>
+        <servlet-class>com.addAccountDetails.getAllAccounts</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>deleteAccountDetails</servlet-name>
+        <servlet-class>com.addAccountDetails.deleteAccountDetails</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updateAccountDetails</servlet-name>
+        <servlet-class>com.addAccountDetails.updateAccountDetails</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>addUserRecord</servlet-name>
         <url-pattern>/addUserRecord</url-pattern>
@@ -31,6 +47,22 @@
     <servlet-mapping>
         <servlet-name>deleteUsers</servlet-name>
         <url-pattern>/deleteUsers</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddAccountDetails</servlet-name>
+        <url-pattern>/AddAccountDetails</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getAllAccounts</servlet-name>
+        <url-pattern>/getAllAccounts</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteAccountDetails</servlet-name>
+        <url-pattern>/deleteAccountDetails</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateAccountDetails</servlet-name>
+        <url-pattern>/updateAccountDetails</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
