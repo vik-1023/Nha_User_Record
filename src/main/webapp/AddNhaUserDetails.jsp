@@ -1,10 +1,32 @@
+<%
+    response.setHeader("Cache-Control", "no-store");
+
+    HttpSession s = request.getSession(false);
+
+    String LogUsername = null;
+
+    if (s != null) {
+        LogUsername = (String) s.getAttribute("LogUsername");
+        System.out.println(LogUsername);
+        if (LogUsername == null) {
+            response.sendRedirect("Login");
+            return;
+        }
+    } else {
+        response.sendRedirect("Login");
+        return;
+    }
+%>
+
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Signup Page</title>
+        <title>AddNhaUserDetails</title>
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
         <style>
             body {
@@ -122,7 +144,11 @@
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
             Add New Users
         </button>
+        <button type="button" class="btn btn-secondary"><a href="AddNhaAccountsDetails" style="color: white; text-decoration: none">Show Account</a></button>
+        <button type="button" class="btn btn-danger"><a href="Logout"  style="color: white; text-decoration: none">Logout</a></button>
+
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -557,8 +583,39 @@
             });
         </script>
 
+<script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Select the logout button
+                const logoutButton = document.querySelector('a[href="Logout"]');
 
+                // Add click event listener to the logout button
+                logoutButton.addEventListener('click', function (event) {
+                    event.preventDefault(); // Prevent the default link behavior
 
+                    // Show SweetAlert confirmation popup
+                    Swal.fire({
+                        title: 'Are you sure?',
+                        text: 'You are about to log out. Do you want to continue?',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, log out!',
+                        cancelButtonText: 'Cancel'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Redirect to the logout URL if confirmed
+                            window.location.href = logoutButton.href;
+                        }
+                    });
+                });
+            });
+        </script>
+ <!-- SweetAlert2 CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+        <!-- SweetAlert2 JS -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
         <!-- Add SweetAlert2 CSS in your <head> -->
         <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.5.0/dist/sweetalert2.min.css" rel="stylesheet">

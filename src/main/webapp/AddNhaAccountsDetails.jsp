@@ -3,13 +3,31 @@
     Created on : 28 Mar, 2025, 10:55:12 AM
     Author     : vikram
 --%>
+<%
+    response.setHeader("Cache-Control", "no-store");
 
+    HttpSession s = request.getSession(false);
+
+    String LogUsername = null;
+
+    if (s != null) {
+        LogUsername = (String) s.getAttribute("LogUsername");
+        System.out.println(LogUsername);
+        if (LogUsername == null) {
+            response.sendRedirect("Login");
+            return;
+        }
+    } else {
+        response.sendRedirect("Login");
+        return;
+    }
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>AddNhaAccountsDetails</title>
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -143,13 +161,15 @@
     </head>
     <body>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-            Add New Account Details
+            Add New Account
         </button>
+        <button type="button" class="btn btn-secondary"><a href="AddNhaUserDetails" style="color: white; text-decoration: none">Show Users</a></button>
+        <button type="button" class="btn btn-danger"><a href="Logout"  style="color: white; text-decoration: none">Logout</a></button>
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Add Account Details</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Add Account</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -232,30 +252,30 @@
         </div>
 
         <div class="container-fluid">
-    <section>
-        <h1 class="mb-4 text-center">NHA Accounts Details</h1>
-        <div class="table-responsive">
-            <table class="table table-striped table-bordered">
-                <thead class="thead-dark">
-                    <tr class="text-center">
-                        <th scope="col">ID</th>
-                        <th scope="col">ACCOUNT NAME</th>
-                        <th scope="col">COMPANY NAME</th>
-                        <th scope="col">SETUP</th>
-                        <th scope="col">PASSWORD</th>
-                        <th scope="col">ENVIRONMENT</th>
-                        <th scope="col">API URL</th>
-                        <th scope="col">DEPARTMENT</th>
-                        <th scope="col">ACTIONS</th>
-                    </tr>
-                </thead>
-                <tbody id="userTableBody" class="text-center">
-                    <!-- Rows will be populated here by AJAX -->
-                </tbody>
-            </table>
+            <section>
+                <h1 class="mb-4 text-center">NHA Accounts Details</h1>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered">
+                        <thead class="thead-dark">
+                            <tr class="text-center">
+                                <th scope="col">ID</th>
+                                <th scope="col">ACCOUNT NAME</th>
+                                <th scope="col">COMPANY NAME</th>
+                                <th scope="col">SETUP</th>
+                                <th scope="col">PASSWORD</th>
+                                <th scope="col">ENVIRONMENT</th>
+                                <th scope="col">API URL</th>
+                                <th scope="col">DEPARTMENT</th>
+                                <th scope="col">ACTIONS</th>
+                            </tr>
+                        </thead>
+                        <tbody id="userTableBody" class="text-center">
+                            <!-- Rows will be populated here by AJAX -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
         </div>
-    </section>
-</div>
 
 
         <script>
@@ -563,6 +583,40 @@
                         });
             });
         </script>
+<script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Select the logout button
+                const logoutButton = document.querySelector('a[href="Logout"]');
 
+                // Add click event listener to the logout button
+                logoutButton.addEventListener('click', function (event) {
+                    event.preventDefault(); // Prevent the default link behavior
+
+                    // Show SweetAlert confirmation popup
+                    Swal.fire({
+                        title: 'Are you sure?',
+                        text: 'You are about to log out. Do you want to continue?',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, log out!',
+                        cancelButtonText: 'Cancel'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Redirect to the logout URL if confirmed
+                            window.location.href = logoutButton.href;
+                        }
+                    });
+                });
+            });
+        </script>
+        
+        
+         <!-- SweetAlert2 CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+        <!-- SweetAlert2 JS -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </body>
 </html>

@@ -1,5 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <!-- Welcome File List -->
+    <welcome-file-list>
+        <welcome-file>Telegram_Email_Login.jsp</welcome-file>
+    </welcome-file-list>
+    <servlet>
+        <servlet-name>Login</servlet-name>
+        <jsp-file>/Telegram_Email_Login.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/Login/*</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>Logout</servlet-name>
+        <jsp-file>/logout.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Logout</servlet-name>
+        <url-pattern>/Logout/*</url-pattern>
+    </servlet-mapping>
+    
+    
     <servlet>
         <servlet-name>addUserRecord</servlet-name>
         <servlet-class>com.addUsersServlet.addUserRecord</servlet-class>
@@ -32,6 +55,30 @@
         <servlet-name>updateAccountDetails</servlet-name>
         <servlet-class>com.addAccountDetails.updateAccountDetails</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddNhaAccountsDetails</servlet-name>
+        <jsp-file>/AddNhaAccountsDetails.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>telegramLoginServlet</servlet-name>
+        <servlet-class>com.login.telegramLoginServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SendAttachmentMail</servlet-name>
+        <servlet-class>com.login.SendAttachmentMail</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddNhaAccountsDetails</servlet-name>
+        <url-pattern>/AddNhaAccountsDetails/*</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>AddNhaUserDetails</servlet-name>
+        <jsp-file>/AddNhaUserDetails.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddNhaUserDetails</servlet-name>
+        <url-pattern>/AddNhaUserDetails/*</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>addUserRecord</servlet-name>
         <url-pattern>/addUserRecord</url-pattern>
@@ -63,6 +110,14 @@
     <servlet-mapping>
         <servlet-name>updateAccountDetails</servlet-name>
         <url-pattern>/updateAccountDetails</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>telegramLoginServlet</servlet-name>
+        <url-pattern>/telegramLoginServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SendAttachmentMail</servlet-name>
+        <url-pattern>/SendAttachmentMail</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
